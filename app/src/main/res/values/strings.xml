@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">Jrfexams</string>
+
+
+    <!--    Create Account Screen  -->
+    <string name="back">Back</string>
+    <string name="create_account">Create Account</string>
+    <string name="and_start_learning">Practice daily to win</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="terms_of_use_and_privacy_policy">Terms of Use and Privacy Policy</string>
+    <string name="sign_up">Sign Up</string>
+    <!--    Sign Up Screen -->
+    <string name="already_have_an_ac">Already have an account? Log in.</string>
+    <string name="sign_up_with_phone">Sign Up with Phone</string>
+    <string name="sign_up_with_email">Sign Up with Email</string>
+    <string name="continue_with_fb">Continue with Facebook</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="meet_new_friends_talk_everything">Meet new friends and share music\n or talk about everything</string>
+    <string name="instantly_meet">Instantly meet\nnew friends</string>
+    <string name="or">or</string>
+
+    <!--    Log in  Screen  -->
+    <string name="welcome_back">Welcome</string>
+    <string name="log_in_with_your_ac">Log in with your Account</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="enter_email_or_phone">Enter your email address or phone number\nto reset your password</string>
+    <string name="enter_otp">Enter the OTP\n Code to Verify Your Phone</string>
+    <string name="sms_sent">We have sent you an Sms with a Code to the\n number </string>
+    <string name="send_code_again"><u>send code again</u>.</string>
+    <string name="dont_have_ac">Don\'t have an account? Join now</string>
+    <string name="log_in">Log In</string>
+    <string name="phone">Phone</string>
+    <string name="full_name">Full name</string>
+    <string name="questions">Questions</string>
+    <string name="demo_exam">Demo Exam</string>
+
+
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="share_this_app">Share this app</string>
+    <string name="rate_this_app">Rate this app</string>
+    <string name="profile">Profile</string>
+    <string name="contact_us">Contact us</string>
+    <string name="you_marked">You Marked</string>
+    <string name="solution">Submitted</string>
+    <string name="you_missed">You missed</string>
+    <string name="logo">Logo</string>
+
+
+    <string name="subscription">/ month</string>
+    <string name="subscription_title">Subscription</string>
+    <string name="activated">activated</string>
+    <string name="subscription_inactive">Subscription Inactive</string>
+    <string name="subscription_active">Subscription active</string>
+
+</resources>
