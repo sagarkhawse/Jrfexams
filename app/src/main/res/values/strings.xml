@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Jrfexams</string>
+    <string name="app_name">JRFexams</string>
 
 
     <!--    Create Account Screen  -->
@@ -48,10 +48,25 @@
     <string name="logo">Logo</string>
 
 
-    <string name="subscription">/ month</string>
+    <string name="subscription"> / month</string>
     <string name="subscription_title">Subscription</string>
     <string name="activated">activated</string>
     <string name="subscription_inactive">Subscription Inactive</string>
     <string name="subscription_active">Subscription active</string>
+    <string name="rupee">₹</string>
 
+    <!--    Profile    -->
+
+    <string name="fill_up_your_details">Fill up Your Details and\n Secure your profile </string>
+    <string name="guardian_s_number">Guardian\'s \nNumber</string>
+    <string name="gender">Gender</string>
+    <string name="city">City</string>
+    <string name="save_continue">Save and Continue</string>
+    <string name="phone_number">Phone number</string>
+    <string name="logout">Logout</string>
+    <string-array name="gender">
+        <item>select gender</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>

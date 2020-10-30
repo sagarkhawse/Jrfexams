@@ -52,4 +52,7 @@ public class Variables {
     //inserted data in quizQuestionsList from quiz list adapter
     public static List<Quiz> quizQuestionsList = new ArrayList<>();
 
+
+    public static boolean isUserSubscribed = false;
+
 }

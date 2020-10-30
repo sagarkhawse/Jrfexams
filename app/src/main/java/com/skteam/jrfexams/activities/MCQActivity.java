@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -187,4 +190,13 @@ public class MCQActivity extends AppCompatActivity implements IQuizListener {
     }
 
 
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("do you want to exit ?");
+        builder.setPositiveButton("Yes", (dialogInterface, i) -> finish()).setNegativeButton("No", (dialogInterface, i) -> dialogInterface.dismiss());
+
+        Dialog dialog = builder.create();
+        dialog.show();
+    }
 }

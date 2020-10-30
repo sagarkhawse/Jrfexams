@@ -25,4 +25,7 @@ public class Constants {
     public static final String KEY_USER_PROFILE = "user_profile";
     public static final String USER = "user";
 
+    //do not change, variable matches from server
+    public static final String ACTIVATE = "activate";
+    public static final String INACTIVATE = "inactivate";
 }

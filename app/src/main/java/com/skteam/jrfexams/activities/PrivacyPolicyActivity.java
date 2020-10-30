@@ -19,7 +19,7 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_privacy_policy);
         WebView webView = findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("http://utsav.ga/VideoApp/privacy_policy.html");
+        webView.loadUrl("http://androappdev.xyz/JrfExams/privacy_policy.html");
         webView.setWebViewClient(new WebViewClient());
     }
 }

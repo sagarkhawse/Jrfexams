@@ -63,18 +63,26 @@ public class LogRegActivity extends AppCompatActivity {
                 }
             }
         });
-        binding.btnContinue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isFormFilled()) {
-                    if (type.equals("login")){
-                        checkUser(binding.phone.getText().toString().trim());
-                    }else{
-                        sign_up_log_in_api();
-                    }
-
+        binding.btnContinue.setOnClickListener(view -> {
+            if (isFormFilled()) {
+                if (type.equals("login")){
+                    checkUser(binding.phone.getText().toString().trim());
+                }else{
+                    sign_up_log_in_api();
                 }
+
             }
+        });
+
+        binding.txtBelowContinueBtn.setOnClickListener(view -> {
+
+                if (type.equals("login")){
+                   Functions.startSupportChat(activity);
+                }else{
+                    startActivity(new Intent(activity,PrivacyPolicyActivity.class));
+                }
+
+
         });
     }
 
@@ -84,6 +92,7 @@ public class LogRegActivity extends AppCompatActivity {
         hideProgressBar();
         Intent intent = new Intent(activity, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
 private void hideProgressBar(){

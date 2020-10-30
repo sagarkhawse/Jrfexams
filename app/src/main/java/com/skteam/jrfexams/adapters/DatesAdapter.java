@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,8 @@ import com.skteam.jrfexams.R;
 import com.skteam.jrfexams.activities.MCQActivity;
 import com.skteam.jrfexams.models.Date;
 import com.skteam.jrfexams.utils.Animations;
+import com.skteam.jrfexams.utils.Functions;
+import com.skteam.jrfexams.utils.Variables;
 
 import java.util.List;
 
@@ -63,9 +66,15 @@ public class DatesAdapter extends RecyclerView.Adapter<DatesAdapter.DataViewHold
 
 
         holder.itemView.setOnClickListener(view -> {
-            Intent intent = new Intent(context, MCQActivity.class);
-            intent.putExtra("date_id",data.date_id);
-            context.startActivity(intent);
+            if (Variables.isUserSubscribed){
+                Intent intent = new Intent(context, MCQActivity.class);
+                intent.putExtra("date_id",data.date_id);
+                context.startActivity(intent);
+            }else {
+                Functions.ShowToast(context,"Please activate your Subscription");
+            }
+
+
         });
     }
 

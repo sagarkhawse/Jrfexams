@@ -1,6 +1,7 @@
 package com.skteam.jrfexams.activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
@@ -11,6 +12,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +20,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.gocashfree.cashfreesdk.CFPaymentService;
 import com.skteam.jrfexams.BuildConfig;
 import com.skteam.jrfexams.Payment;
@@ -35,7 +42,11 @@ import com.skteam.jrfexams.utils.Constants;
 import com.skteam.jrfexams.utils.Functions;
 import com.skteam.jrfexams.utils.Helper;
 import com.skteam.jrfexams.utils.SharedPreferenceUtil;
+import com.skteam.jrfexams.utils.Variables;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -60,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     private String customerPhone = "7385663427";
     private String customerEmail = "android@gmail.com";
 
-
+    SharedPreferenceUtil sharedPreferenceUtil;
     private ProgressDialog pd;
     private User userData;
     private String date;
@@ -76,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         mService = Common.getAPI();
         pd = new ProgressDialog(activity);
 
-        SharedPreferenceUtil sharedPreferenceUtil = new SharedPreferenceUtil(activity);
+        sharedPreferenceUtil = new SharedPreferenceUtil(activity);
         userData = Helper.getLoggedInUser(sharedPreferenceUtil);
         if (userData == null) {
             startActivity(new Intent(activity, LogRegActivity.class));
@@ -84,8 +95,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             customerEmail = userData.email;
             customerPhone = userData.phone;
-
-            Toast.makeText(activity, "" + userData.user_id, Toast.LENGTH_SHORT).show();
 
 
             binding.recyclerview.setHasFixedSize(true);
@@ -95,19 +104,23 @@ public class MainActivity extends AppCompatActivity {
             Animations.bounce(activity, binding.cvDemoExam);
             Animations.bounce(activity, binding.cvSubscription);
 
+
+            Glide.with(activity).load(Variables.BASE_URL + userData.profile_pic).placeholder(R.drawable.ic_baseline_person_24).into(binding.userDp);
+
+            binding.userDp.setOnClickListener(view13 -> startActivity(new Intent(activity, ProfileActivity.class)));
+
             initAppData();
             initDates();
 
         }
 
         binding.menu.setOnClickListener(this::showMenuOptions);
-        binding.cvSubscription.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                initPaymentScreen();
-            }
+        binding.cvSubscription.setOnClickListener(view1 -> initPaymentScreen());
+        binding.cvDemoExam.setOnClickListener(view12 -> {
+            Intent intent = new Intent(activity, MCQActivity.class);
+            intent.putExtra("date_id", 0);
+            startActivity(intent);
         });
-
 
     }
 
@@ -124,16 +137,27 @@ public class MainActivity extends AppCompatActivity {
                         assert response.body() != null;
                         AppData dat = response.body().res.get(0);
                         orderAmount = Integer.parseInt(dat.subscription_amount);
-                        binding.sub.setText(orderAmount + getString(R.string.subscription));
+                        binding.sub.setText(getString(R.string.rupee) + " " + orderAmount + " " + getString(R.string.subscription));
                         binding.progressbarSub.setVisibility(View.GONE);
                         binding.cvSubscription.setEnabled(true);
 
                         if (dat.isactive != null) {
                             if (dat.isactive.equals("1")) {
                                 subscriptionActive();
-                                binding.sub.setText(Functions.timeDiff(dat.date));
+
+
+                                //check for subscription expiry , if date is more than 30 days ago
+                                if (Functions.getDaysBetweenDates(dat.date, Functions.getCurrentDateTime()) > 30) {
+                                    //make subscription changes to expired
+                                    subscribingUserApi("date", Constants.INACTIVATE);
+                                } else {
+                                    binding.sub.setText(Functions.timeDiff(dat.date));
+                                }
+
+
                             }
                         }
+
 
                     }
 
@@ -172,9 +196,19 @@ public class MainActivity extends AppCompatActivity {
         PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
         popupMenu.inflate(R.menu.menu);
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
+                    case R.id.logout:
+                        Helper.setLoggedInUser(sharedPreferenceUtil, null);
+                        startActivity(new Intent(activity, LogRegActivity.class));
+                        finish();
+                        return true;
+                    case R.id.contact_us:
+                        Functions.startSupportChat(activity);
+                        return true;
+
                     case R.id.privacy_policy:
                         startActivity(new Intent(activity, PrivacyPolicyActivity.class));
                         return true;
@@ -193,6 +227,10 @@ public class MainActivity extends AppCompatActivity {
                         intent.setAction(Intent.ACTION_VIEW);
                         intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID));
                         startActivity(intent);
+                        return true;
+
+                    case R.id.profile:
+                        startActivity(new Intent(activity, ProfileActivity.class));
                         return true;
 
                     default:
@@ -279,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
 //                }
                 date = bundle.getString("txTime");
             if (bundle.getString("txStatus").equals("SUCCESS")) {
-                subscribingUserApi();
+                subscribingUserApi(date, Constants.ACTIVATE);
             } else {
                 Functions.ShowToast(activity, bundle.getString("txStatus"));
             }
@@ -298,19 +336,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void subscribingUserApi() {
+    /**
+     * Api calls for subscriptions
+     *
+     * @param date
+     * @param action
+     */
+    private void subscribingUserApi(String date, String action) {
         pd.setMessage("please wait...");
         pd.show();
-        mService.subscription(userData.user_id, date, "activate")
+        mService.subscription(userData.user_id, date, action)
                 .enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                         assert response.body() != null;
                         if (response.body().code.equals(Constants.SUCCESS)) {
-                            Functions.ShowToast(activity, "User Subscription Activated Successfully");
-                            subscriptionActive();
+
+                            if (action.equals(Constants.ACTIVATE)) {
+                                Functions.ShowToast(activity, "User Subscription Activated Successfully");
+                                subscriptionActive();
+                            } else {
+                                subscriptionInActive();
+                            }
+
                         } else {
-                            Functions.ShowToast(activity, "failed to activate subscription");
+                            Functions.ShowToast(activity, "" + response.body().error_msg);
                         }
                         pd.dismiss();
                     }
@@ -322,17 +372,6 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-    }
-
-    private void subscriptionActive() {
-        binding.subscriptionTitle.setText(getString(R.string.activated));
-
-        binding.cvSubscription.setBackgroundColor(getResources().getColor(R.color.colorGreen));
-        binding.cvSubscription.setEnabled(false);
-
-        binding.subActive.setText(getString(R.string.subscription_active));
-        binding.subActive.setTextColor(getResources().getColor(R.color.colorGreen));
-
     }
 
     private void transaction_details(String payment_mode, String order_id, String time, String reference_id, String type, String message,
@@ -350,4 +389,35 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
+    /**
+     * Subscription on / off views methods
+     */
+    private void subscriptionActive() {
+        Variables.isUserSubscribed = true;
+        binding.subscriptionTitle.setText(getString(R.string.activated));
+
+        binding.cvSubscription.setBackgroundColor(getResources().getColor(R.color.colorGreen));
+        binding.cvSubscription.setEnabled(false);
+
+        binding.subActive.setText(getString(R.string.subscription_active));
+        binding.subActive.setTextColor(getResources().getColor(R.color.colorGreen));
+
+    }
+
+    private void subscriptionInActive() {
+        Variables.isUserSubscribed = false;
+        binding.subscriptionTitle.setText(getString(R.string.subscription_title));
+
+
+        binding.cvSubscription.setBackgroundColor(getResources().getColor(R.color.colorBlack));
+        binding.cvSubscription.setEnabled(false);
+
+        binding.subActive.setText(getString(R.string.subscription_inactive));
+        binding.subActive.setTextColor(getResources().getColor(R.color.colorBlack));
+
+    }
+
+
 }

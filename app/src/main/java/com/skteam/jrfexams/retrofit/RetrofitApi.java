@@ -11,6 +11,7 @@ import com.skteam.jrfexams.utils.Variables;
 
 import java.util.Map;
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -75,29 +76,15 @@ public interface RetrofitApi {
                            @Field("signature") String signature,
                            @Field("message") String message);
 
-//
-//    @FormUrlEncoded
-//    @POST("get_video_list_category_wise.php")
-//    Call<VideoResponse> getVideoListCategoryWise(@Field("Category_Name") String category_name);
-//
-//    @GET("get_category_list.php")
-//    Call<VideoResponse> getCategoryList();
-//
-//    @FormUrlEncoded
-//    @POST("search_video.php")
-//    Call<VideoResponse> getVideoSearchResult(@Field("Search_Query") String category_name);
-//
-//
-//    @FormUrlEncoded
-//    @POST("check_user.php")
-//    Call<User> checkUserExist(@Field("Email") String email);
-//
+    @Multipart
+    @POST(Variables.api + "update_user_dp")
+    Call<User> update_user_dp(@Part MultipartBody.Part profile_pic, @Part("user_id") RequestBody user_id);
 
-//
-//
-//    @FormUrlEncoded
-//    @POST("on_video_liked.php")
-//    Call<Video> onVideoLiked(@Field("Video_Id") int video_id,
-//                             @Field("Email") String email);
-
+    @FormUrlEncoded
+    @POST(Variables.api + "update_user_data")
+    Call<User> update_user_data(@Field("user_id") int user_id,
+                                  @Field("name") String name,
+                                  @Field("email") String email,
+                                  @Field("gender") String gender,
+                                  @Field("city") String city);
 }

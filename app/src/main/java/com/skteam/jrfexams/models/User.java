@@ -6,7 +6,7 @@ import retrofit2.http.Field;
 
 public class User extends Base_Response {
 public int user_id;
-public String email, phone, full_name,password;
+public String email, phone, full_name,password,gender,city,profile_pic;
 public List<User> res;
 
 //transaction

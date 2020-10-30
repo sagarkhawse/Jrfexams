@@ -2,6 +2,7 @@ package com.skteam.jrfexams.utils;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.media.MediaMetadataRetriever;
@@ -27,6 +28,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -215,5 +217,86 @@ public static int getFileSize(String file_path){
 
     }
 
+
+
+    public static int getTimeDifference(String startDate) {
+        Date diff = new Date(Date.parse(getCurrentDateTime()) - Date.parse(startDate));
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+        calendar.setTime(diff);
+        int day=calendar.get(Calendar.DAY_OF_MONTH);
+        int hours = calendar.get(Calendar.HOUR_OF_DAY);
+        return day;
+    }
+
+
+    public static String getCurrentDateTime(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        return sdf.format(new Date());
+    }
+
+
+    public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";  //or use "M/d/yyyy"
+
+    public static long getDaysBetweenDates(String start, String end) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH);
+        Date startDate, endDate;
+        long numberOfDays = 0;
+        try {
+            startDate = dateFormat.parse(start);
+            endDate = dateFormat.parse(end);
+            numberOfDays = getUnitBetweenDates(startDate, endDate, TimeUnit.DAYS);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return numberOfDays;
+    }
+
+    private static long getUnitBetweenDates(Date startDate, Date endDate, TimeUnit unit) {
+        long timeDiff = endDate.getTime() - startDate.getTime();
+        return unit.convert(timeDiff, TimeUnit.MILLISECONDS);
+    }
+
+
+    @NonNull
+    public static RequestBody createPartFromString(String descriptionString) {
+        return RequestBody.create(
+                okhttp3.MultipartBody.FORM, descriptionString);
+    }
+
+    @NonNull
+    public static MultipartBody.Part prepareFilePart(Context context, String partName, String file_path) {
+        File file;
+        // use the FileUtils to get the actual file by uri
+        file = new File(file_path);
+//              file= FileUtils.getFile(context, Uri.parse(file_path));
+
+
+        // create RequestBody instance from file
+        RequestBody requestFile =
+                RequestBody.create(
+                        MediaType.parse("*/*"),
+                        file
+                );
+
+        // MultipartBody.Part is used to send also the actual file name
+        return MultipartBody.Part.createFormData(partName, file.getName(), requestFile);
+    }
+
+
+    public static void startSupportChat(Context context) {
+
+        try {
+            String headerReceiver = "hello ";// Replace with your message.
+            String bodyMessageFormal = "";// Replace with your message.
+            String whatsappContain = headerReceiver + bodyMessageFormal;
+            String trimToNumner = "+918249660580"; //10 digit number
+            Intent intent = new Intent ( Intent.ACTION_VIEW );
+            intent.setData ( Uri.parse ( "https://wa.me/" + trimToNumner + "/?text=" + whatsappContain) );
+            context.startActivity ( intent );
+        } catch (Exception e) {
+            e.printStackTrace ();
+        }
+
+    }
 
 }
