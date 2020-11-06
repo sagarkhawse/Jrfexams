@@ -17,7 +17,6 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_marginTop="15sp"
             android:layout_width="match_parent"
             app:titleTextColor="@color/colorBlack"
             android:layout_height="wrap_content"
@@ -283,8 +282,7 @@ android:background="@android:color/transparent"
             android:fontFamily="@font/poppins_bold"
             android:textAllCaps="false"
             android:textSize="@dimen/_16ssp"
-            android:paddingTop="@dimen/_10sdp"
-            android:paddingBottom= "@dimen/_35sdp" />
+            />
 
     </LinearLayout>
 

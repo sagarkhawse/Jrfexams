@@ -15,13 +15,18 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorPrimaryDark">@color/colorAccent</item>
     </style>
-
+    <style name="AppThemeMcq" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorGreen</item>
+    </style>
 
     <style name="McqTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorRed</item>
+        <item name="colorPrimary">@color/colorBlack</item>
         <item name="colorAccent">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorRed</item>
+        <item name="colorPrimaryDark">@color/colorBlack</item>
     </style>
 
 </resources>

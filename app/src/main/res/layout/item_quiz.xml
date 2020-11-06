@@ -55,6 +55,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="What is android?"
+                        android:fontFamily="@font/avenir_next_demi"
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/_12ssp" />
 
@@ -78,14 +79,17 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="(A)" />
+                                android:text="(A)"
+                                android:fontFamily="@font/poppins_medium"
+                                />
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/tvOpt2"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="(B)" />
+                                android:text="(B)"
+                                android:fontFamily="@font/poppins_medium"/>
 
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -100,14 +104,16 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="(C)" />
+                                android:text="(C)"
+                                android:fontFamily="@font/poppins_medium"/>
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/tvOpt4"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="(D)" />
+                                android:text="(D)"
+                                android:fontFamily="@font/poppins_medium"/>
 
                         </androidx.appcompat.widget.LinearLayoutCompat>
 

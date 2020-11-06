@@ -2,442 +2,448 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/McqTheme"
+    tools:context=".activities.MCQActivity">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-    android:theme="@style/McqTheme"
-        tools:context=".activities.MCQActivity">
+        android:background="@color/colorPrimaryDark"
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+<!--        <Button-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Add Question"-->
+<!--            android:id="@+id/add_question"-->
+<!--            />-->
+
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolBar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimaryDark"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:background="@color/colorBlack">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolBar"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5ssp"
+                android:src="@drawable/ic_back" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15ssp"
+                android:padding="@dimen/_5ssp"
+                android:text="Demo"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_14ssp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorRed">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ivBack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/_5ssp"
-                    android:src="@drawable/ic_back" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_15ssp"
-                    android:padding="@dimen/_5ssp"
-                    android:text="Mains/Neet(Level-1)"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/_14ssp" />
+                android:gravity="end"
+                android:padding="@dimen/_5ssp"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_12ssp" />
 
 
+        </com.google.android.material.appbar.MaterialToolbar>
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/time"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/_5ssp"
-                    android:gravity="end"
-                    android:text="Time left ;- 50:60"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/_12ssp" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
 
-
-            </com.google.android.material.appbar.MaterialToolbar>
-
-            <androidx.core.widget.NestedScrollView
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fillViewport="true">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-
-                <androidx.appcompat.widget.LinearLayoutCompat
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <LinearLayout
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content">
 
-                        <FrameLayout
+                        <androidx.appcompat.widget.LinearLayoutCompat
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="@dimen/_230sdp"
+                            android:background="@drawable/style_curved_bg"
+                            android:orientation="vertical">
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_120sdp">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/jrf_logo" />
+                            </FrameLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_50sdp"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginEnd="@dimen/_15sdp"
+                                android:layout_marginBottom="@dimen/_20sdp"
+                                android:background="@drawable/white_bg">
+
+                                <RelativeLayout
+                                    android:id="@+id/rlQue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true">
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/ivQuestions"
+                                        android:layout_width="28dp"
+                                        android:layout_height="28dp"
+                                        android:layout_marginStart="@dimen/_20sdp"
+                                        android:src="@drawable/ic_unselect_question" />
+
+                                    <com.google.android.material.textview.MaterialTextView
+                                        android:id="@+id/tvQues"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
+                                        android:layout_marginStart="@dimen/_8sdp"
+                                        android:layout_toEndOf="@id/ivQuestions"
+                                        android:text="Questions"
+                                        android:textColor="#373434"
+                                        android:textSize="@dimen/_13ssp" />
+                                </RelativeLayout>
+
+                                <View
+                                    android:id="@+id/view"
+                                    android:layout_width="1dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:background="#dddddd" />
+
+                                <RelativeLayout
+                                    android:id="@+id/rlSummary"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_toEndOf="@id/view"
+                                    android:gravity="center"
+                                    android:padding="@dimen/_5sdp">
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/ivSummary"
+                                        android:layout_width="28dp"
+                                        android:layout_height="28dp"
+                                        android:layout_centerVertical="true"
+                                        android:src="@drawable/ic_unselect_summary" />
+
+                                    <com.google.android.material.textview.MaterialTextView
+                                        android:id="@+id/tvSummary"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
+                                        android:layout_marginStart="@dimen/_8sdp"
+                                        android:layout_toEndOf="@id/ivSummary"
+                                        android:text="Summary"
+                                        android:textColor="#373434"
+                                        android:textSize="@dimen/_13ssp" />
+                                </RelativeLayout>
+
+
+                            </RelativeLayout>
+                            <ProgressBar
+                                android:id="@+id/progressBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:visibility="visible" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_180sdp"
+                            android:visibility="visible" />
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/mlSummary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_180sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:layout_marginBottom="@dimen/_10sdp"
+                            android:elevation="@dimen/_8sdp"
+                            android:visibility="gone"
+                            app:cardCornerRadius="@dimen/_15sdp">
 
                             <androidx.appcompat.widget.LinearLayoutCompat
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/_230sdp"
-                                android:background="@drawable/style_curved_bg"
+                                android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
-                                <FrameLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/_120sdp">
-
-                                    <androidx.appcompat.widget.AppCompatImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:src="@drawable/ic_speedometer" />
-
-                                </FrameLayout>
-
                                 <RelativeLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/_50sdp"
-                                    android:layout_gravity="center"
-                                    android:layout_marginStart="@dimen/_15sdp"
-                                    android:layout_marginEnd="@dimen/_15sdp"
-                                    android:layout_marginBottom="@dimen/_20sdp"
-                                    android:background="@drawable/white_bg">
-
-                                    <RelativeLayout
-                                        android:id="@+id/rlQue"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerVertical="true">
-
-                                        <androidx.appcompat.widget.AppCompatImageView
-                                            android:id="@+id/ivQuestions"
-                                            android:layout_width="28dp"
-                                            android:layout_height="28dp"
-                                            android:layout_marginStart="@dimen/_20sdp"
-                                            android:src="@drawable/ic_unselect_question" />
-
-                                        <com.google.android.material.textview.MaterialTextView
-                                            android:id="@+id/tvQues"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_centerInParent="true"
-                                            android:layout_marginStart="@dimen/_8sdp"
-                                            android:layout_toEndOf="@id/ivQuestions"
-                                            android:text="Questions"
-                                            android:textColor="#373434"
-                                            android:textSize="@dimen/_13ssp" />
-                                    </RelativeLayout>
-
-                                    <View
-                                        android:id="@+id/view"
-                                        android:layout_width="1dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerInParent="true"
-                                        android:background="#dddddd" />
-
-                                    <RelativeLayout
-                                        android:id="@+id/rlSummary"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="match_parent"
-                                        android:layout_alignParentEnd="true"
-                                        android:layout_centerVertical="true"
-                                        android:layout_toEndOf="@id/view"
-                                        android:gravity="center"
-                                        android:padding="@dimen/_5sdp">
-
-                                        <androidx.appcompat.widget.AppCompatImageView
-                                            android:id="@+id/ivSummary"
-                                            android:layout_width="28dp"
-                                            android:layout_height="28dp"
-                                            android:layout_centerVertical="true"
-                                            android:src="@drawable/ic_unselect_summary" />
-
-                                        <com.google.android.material.textview.MaterialTextView
-                                            android:id="@+id/tvSummary"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_centerInParent="true"
-                                            android:layout_marginStart="@dimen/_8sdp"
-                                            android:layout_toEndOf="@id/ivSummary"
-                                            android:text="Summary"
-                                            android:textColor="#373434"
-                                            android:textSize="@dimen/_13ssp" />
-                                    </RelativeLayout>
-
-
-                                </RelativeLayout>
-                            </androidx.appcompat.widget.LinearLayoutCompat>
-
-                            <ProgressBar
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:visibility="visible"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="@dimen/_60sdp"
-                                android:id="@+id/progressBar"
-                                />
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/recyclerview"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_180sdp"
-                                android:visibility="visible" />
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/mlSummary"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_15sdp"
-                                android:layout_marginTop="@dimen/_180sdp"
-                                android:layout_marginEnd="@dimen/_15sdp"
-                                android:layout_marginBottom="@dimen/_10sdp"
-                                android:elevation="@dimen/_8sdp"
-                                android:visibility="gone"
-                                app:cardCornerRadius="@dimen/_15sdp">
-
-                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:id="@+id/rlTotalQues"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="vertical">
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_12sdp"
+                                    android:layout_marginEnd="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_12sdp"
+                                    android:orientation="horizontal">
 
-                                    <RelativeLayout
-                                        android:id="@+id/rlTotalQues"
-                                        android:layout_width="match_parent"
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/ivTotalQue"
+                                        android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginStart="@dimen/_10sdp"
-                                        android:layout_marginTop="@dimen/_12sdp"
-                                        android:layout_marginEnd="@dimen/_10sdp"
-                                        android:layout_marginBottom="@dimen/_12sdp"
-                                        android:orientation="horizontal">
+                                        android:src="@drawable/ic_total_question" />
 
-                                        <androidx.appcompat.widget.AppCompatImageView
-                                            android:id="@+id/ivTotalQue"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:src="@drawable/ic_total_question" />
-
-                                        <com.google.android.material.textview.MaterialTextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_centerInParent="true"
-                                            android:layout_marginStart="@dimen/_10sdp"
-                                            android:layout_toEndOf="@id/ivTotalQue"
-                                            android:text="Total Questions"
-                                            android:textColor="@android:color/black"
-                                            android:textSize="@dimen/_13ssp" />
-
-                                        <com.google.android.material.textview.MaterialTextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_centerInParent="true"
-                                            android:layout_marginEnd="@dimen/_10sdp"
-                                            android:text="229"
-                                            android:id="@+id/tvTotalQue"
-                                            android:textColor="@android:color/black"
-                                            android:textSize="@dimen/_13ssp" />
-
-                                    </RelativeLayout>
-
-                                    <View
-                                        android:layout_width="match_parent"
-                                        android:layout_height="0.8dp"
-                                        android:background="#dddddd" />
-
-                                    <RelativeLayout
-                                        android:id="@+id/rlTotalQue"
-                                        android:layout_width="match_parent"
+                                    <com.google.android.material.textview.MaterialTextView
+                                        android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
                                         android:layout_marginStart="@dimen/_10sdp"
-                                        android:layout_marginTop="@dimen/_12sdp"
-                                        android:layout_marginEnd="@dimen/_10sdp"
-                                        android:layout_marginBottom="@dimen/_12sdp"
-                                        android:orientation="horizontal">
+                                        android:layout_toEndOf="@id/ivTotalQue"
+                                        android:text="Total Questions"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="@dimen/_13ssp" />
 
-                                        <androidx.appcompat.widget.AppCompatImageView
-                                            android:id="@+id/ivAttemptedQue"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:src="@drawable/ic_attempted" />
-
-                                        <com.google.android.material.textview.MaterialTextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_centerInParent="true"
-                                            android:layout_marginStart="@dimen/_10sdp"
-                                            android:layout_toEndOf="@id/ivAttemptedQue"
-                                            android:text="Attempted"
-                                            android:textColor="@android:color/black"
-                                            android:textSize="@dimen/_13ssp" />
-
-                                        <com.google.android.material.textview.MaterialTextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_centerInParent="true"
-                                            android:layout_marginEnd="@dimen/_10sdp"
-                                            android:text="0"
-                                            android:id="@+id/tvAttempted"
-                                            android:textColor="@android:color/black"
-                                            android:textSize="@dimen/_13ssp" />
-
-                                    </RelativeLayout>
-
-                                    <View
-                                        android:layout_width="match_parent"
-                                        android:layout_height="0.8dp"
-                                        android:background="#dddddd" />
-
-                                    <RelativeLayout
-                                        android:id="@+id/rlCorrects"
-                                        android:layout_width="match_parent"
+                                    <com.google.android.material.textview.MaterialTextView
+                                        android:id="@+id/tvTotalQue"
+                                        android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginStart="@dimen/_10sdp"
-                                        android:layout_marginTop="@dimen/_12sdp"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_centerInParent="true"
                                         android:layout_marginEnd="@dimen/_10sdp"
-                                        android:layout_marginBottom="@dimen/_12sdp"
-                                        android:orientation="horizontal">
+                                        android:text="229"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="@dimen/_13ssp" />
 
-                                        <androidx.appcompat.widget.AppCompatImageView
-                                            android:id="@+id/ivCorrectQue"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:src="@drawable/ic_correct_ans" />
+                                </RelativeLayout>
 
-                                        <com.google.android.material.textview.MaterialTextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_centerInParent="true"
-                                            android:layout_marginStart="@dimen/_10sdp"
-                                            android:layout_toEndOf="@id/ivCorrectQue"
-                                            android:text="Correct"
-                                            android:textColor="@android:color/black"
-                                            android:textSize="@dimen/_13ssp" />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.8dp"
+                                    android:background="#dddddd" />
 
-                                        <com.google.android.material.textview.MaterialTextView
-                                            android:id="@+id/tvCorrectAnswer"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_centerInParent="true"
-                                            android:layout_marginEnd="@dimen/_10sdp"
-                                            android:text="0"
-                                            android:textColor="@android:color/black"
-                                            android:textSize="@dimen/_13ssp" />
+                                <RelativeLayout
+                                    android:id="@+id/rlTotalQue"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_12sdp"
+                                    android:layout_marginEnd="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_12sdp"
+                                    android:orientation="horizontal">
 
-                                    </RelativeLayout>
-
-                                    <View
-                                        android:layout_width="match_parent"
-                                        android:layout_height="0.8dp"
-                                        android:background="#dddddd" />
-
-                                    <RelativeLayout
-                                        android:id="@+id/rlIncorrectQue"
-                                        android:layout_width="match_parent"
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/ivAttemptedQue"
+                                        android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_attempted" />
+
+                                    <com.google.android.material.textview.MaterialTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
                                         android:layout_marginStart="@dimen/_10sdp"
-                                        android:layout_marginTop="@dimen/_12sdp"
+                                        android:layout_toEndOf="@id/ivAttemptedQue"
+                                        android:text="Attempted"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="@dimen/_13ssp" />
+
+                                    <com.google.android.material.textview.MaterialTextView
+                                        android:id="@+id/tvAttempted"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_centerInParent="true"
                                         android:layout_marginEnd="@dimen/_10sdp"
-                                        android:layout_marginBottom="@dimen/_12sdp"
-                                        android:orientation="horizontal">
+                                        android:text="0"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="@dimen/_13ssp" />
 
-                                        <androidx.appcompat.widget.AppCompatImageView
-                                            android:id="@+id/ivIncorrect"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:src="@drawable/ic_incorrect_ans" />
+                                </RelativeLayout>
 
-                                        <com.google.android.material.textview.MaterialTextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_centerInParent="true"
-                                            android:layout_marginStart="@dimen/_10sdp"
-                                            android:layout_toEndOf="@id/ivIncorrect"
-                                            android:text="Incorrect"
-                                            android:textColor="@android:color/black"
-                                            android:textSize="@dimen/_13ssp" />
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.8dp"
+                                    android:background="#dddddd" />
 
-                                        <com.google.android.material.textview.MaterialTextView
-                                            android:id="@+id/tvInCorrectAnswer"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignParentEnd="true"
-                                            android:layout_centerInParent="true"
-                                            android:layout_marginEnd="@dimen/_10sdp"
-                                            android:text="0"
-                                            android:textColor="@android:color/black"
-                                            android:textSize="@dimen/_13ssp" />
+                                <RelativeLayout
+                                    android:id="@+id/rlCorrects"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_12sdp"
+                                    android:layout_marginEnd="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_12sdp"
+                                    android:orientation="horizontal">
 
-                                    </RelativeLayout>
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/ivCorrectQue"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_correct_ans" />
 
-<!--                                    <View-->
-<!--                                        android:layout_width="match_parent"-->
-<!--                                        android:layout_height="0.8dp"-->
-<!--                                        android:background="#dddddd" />-->
+                                    <com.google.android.material.textview.MaterialTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
+                                        android:layout_marginStart="@dimen/_10sdp"
+                                        android:layout_toEndOf="@id/ivCorrectQue"
+                                        android:text="Correct"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="@dimen/_13ssp" />
 
-<!--                                    <RelativeLayout-->
-<!--                                        android:id="@+id/rlAcuuracy"-->
-<!--                                        android:layout_width="match_parent"-->
-<!--                                        android:layout_height="wrap_content"-->
-<!--                                        android:layout_marginStart="@dimen/_10sdp"-->
-<!--                                        android:layout_marginTop="@dimen/_12sdp"-->
-<!--                                        android:layout_marginEnd="@dimen/_10sdp"-->
-<!--                                        android:layout_marginBottom="@dimen/_12sdp"-->
-<!--                                        android:orientation="horizontal">-->
+                                    <com.google.android.material.textview.MaterialTextView
+                                        android:id="@+id/tvCorrectAnswer"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_centerInParent="true"
+                                        android:layout_marginEnd="@dimen/_10sdp"
+                                        android:text="0"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="@dimen/_13ssp" />
 
-<!--                                        <androidx.appcompat.widget.AppCompatImageView-->
-<!--                                            android:id="@+id/ivAcuuracy"-->
-<!--                                            android:layout_width="wrap_content"-->
-<!--                                            android:layout_height="wrap_content"-->
-<!--                                            android:src="@drawable/ic_accuracy" />-->
+                                </RelativeLayout>
 
-<!--                                        <com.google.android.material.textview.MaterialTextView-->
-<!--                                            android:layout_width="wrap_content"-->
-<!--                                            android:layout_height="wrap_content"-->
-<!--                                            android:layout_centerInParent="true"-->
-<!--                                            android:layout_marginStart="@dimen/_10sdp"-->
-<!--                                            android:layout_toEndOf="@id/ivAcuuracy"-->
-<!--                                            android:text="Accuracy"-->
-<!--                                            android:textColor="@android:color/black"-->
-<!--                                            android:textSize="@dimen/_13ssp" />-->
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0.8dp"
+                                    android:background="#dddddd" />
 
-<!--                                        <com.google.android.material.textview.MaterialTextView-->
-<!--                                            android:layout_width="wrap_content"-->
-<!--                                            android:layout_height="wrap_content"-->
-<!--                                            android:layout_alignParentEnd="true"-->
-<!--                                            android:layout_centerInParent="true"-->
-<!--                                            android:layout_marginEnd="@dimen/_10sdp"-->
-<!--                                            android:text="0 %"-->
-<!--                                            android:textColor="@android:color/black"-->
-<!--                                            android:textSize="@dimen/_13ssp" />-->
+                                <RelativeLayout
+                                    android:id="@+id/rlIncorrectQue"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_12sdp"
+                                    android:layout_marginEnd="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_12sdp"
+                                    android:orientation="horizontal">
 
-<!--                                    </RelativeLayout>-->
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/ivIncorrect"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/ic_incorrect_ans" />
+
+                                    <com.google.android.material.textview.MaterialTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
+                                        android:layout_marginStart="@dimen/_10sdp"
+                                        android:layout_toEndOf="@id/ivIncorrect"
+                                        android:text="Incorrect"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="@dimen/_13ssp" />
+
+                                    <com.google.android.material.textview.MaterialTextView
+                                        android:id="@+id/tvInCorrectAnswer"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_centerInParent="true"
+                                        android:layout_marginEnd="@dimen/_10sdp"
+                                        android:text="0"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="@dimen/_13ssp" />
+
+                                </RelativeLayout>
+
+                                <!--                                    <View-->
+                                <!--                                        android:layout_width="match_parent"-->
+                                <!--                                        android:layout_height="0.8dp"-->
+                                <!--                                        android:background="#dddddd" />-->
+
+                                <!--                                    <RelativeLayout-->
+                                <!--                                        android:id="@+id/rlAcuuracy"-->
+                                <!--                                        android:layout_width="match_parent"-->
+                                <!--                                        android:layout_height="wrap_content"-->
+                                <!--                                        android:layout_marginStart="@dimen/_10sdp"-->
+                                <!--                                        android:layout_marginTop="@dimen/_12sdp"-->
+                                <!--                                        android:layout_marginEnd="@dimen/_10sdp"-->
+                                <!--                                        android:layout_marginBottom="@dimen/_12sdp"-->
+                                <!--                                        android:orientation="horizontal">-->
+
+                                <!--                                        <androidx.appcompat.widget.AppCompatImageView-->
+                                <!--                                            android:id="@+id/ivAcuuracy"-->
+                                <!--                                            android:layout_width="wrap_content"-->
+                                <!--                                            android:layout_height="wrap_content"-->
+                                <!--                                            android:src="@drawable/ic_accuracy" />-->
+
+                                <!--                                        <com.google.android.material.textview.MaterialTextView-->
+                                <!--                                            android:layout_width="wrap_content"-->
+                                <!--                                            android:layout_height="wrap_content"-->
+                                <!--                                            android:layout_centerInParent="true"-->
+                                <!--                                            android:layout_marginStart="@dimen/_10sdp"-->
+                                <!--                                            android:layout_toEndOf="@id/ivAcuuracy"-->
+                                <!--                                            android:text="Accuracy"-->
+                                <!--                                            android:textColor="@android:color/black"-->
+                                <!--                                            android:textSize="@dimen/_13ssp" />-->
+
+                                <!--                                        <com.google.android.material.textview.MaterialTextView-->
+                                <!--                                            android:layout_width="wrap_content"-->
+                                <!--                                            android:layout_height="wrap_content"-->
+                                <!--                                            android:layout_alignParentEnd="true"-->
+                                <!--                                            android:layout_centerInParent="true"-->
+                                <!--                                            android:layout_marginEnd="@dimen/_10sdp"-->
+                                <!--                                            android:text="0 %"-->
+                                <!--                                            android:textColor="@android:color/black"-->
+                                <!--                                            android:textSize="@dimen/_13ssp" />-->
+
+                                <!--                                    </RelativeLayout>-->
 
 
-                                </androidx.appcompat.widget.LinearLayoutCompat>
+                            </androidx.appcompat.widget.LinearLayoutCompat>
 
-                            </androidx.cardview.widget.CardView>
+                        </androidx.cardview.widget.CardView>
 
-                        </FrameLayout>
-
-
-<!--                        <Button-->
-<!--                            android:id="@+id/btnResetResponse"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="@dimen/_10sdp"-->
-<!--                            android:layout_marginTop="@dimen/_40sdp"-->
-<!--                            android:layout_marginEnd="@dimen/_10sdp"-->
-<!--                            android:background="@drawable/button_round"-->
-<!--                            android:text="Re-set Responses"-->
-<!--                            android:textAllCaps="false"-->
-<!--                            android:textColor="@android:color/white"-->
-<!--                            android:textSize="@dimen/_12ssp" />-->
-                    </LinearLayout>
+                    </FrameLayout>
 
 
-                </androidx.appcompat.widget.LinearLayoutCompat>
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSubmit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_40sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:background="@drawable/button_round"
+                        android:text="@string/submit"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/_12ssp" />
+                </LinearLayout>
 
-            </androidx.core.widget.NestedScrollView>
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 

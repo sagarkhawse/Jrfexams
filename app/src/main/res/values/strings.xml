@@ -5,7 +5,8 @@
     <!--    Create Account Screen  -->
     <string name="back">Back</string>
     <string name="create_account">Create Account</string>
-    <string name="and_start_learning">Practice daily to win</string>
+    <string name="and_start_learning">Practice daily
+        to win</string>
     <string name="username">Username</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -38,11 +39,12 @@
 
 
     <string name="privacy_policy">Privacy Policy</string>
-    <string name="share_this_app">Share this app</string>
-    <string name="rate_this_app">Rate this app</string>
+    <string name="share_this_app">Share to world</string>
+    <string name="rate_this_app">Rate us</string>
     <string name="profile">Profile</string>
     <string name="contact_us">Contact us</string>
     <string name="you_marked">You Marked</string>
+    <string name="well_done">Well done</string>
     <string name="solution">Submitted</string>
     <string name="you_missed">You missed</string>
     <string name="logo">Logo</string>
@@ -50,7 +52,7 @@
 
     <string name="subscription"> / month</string>
     <string name="subscription_title">Subscription</string>
-    <string name="activated">activated</string>
+    <string name="activated">Activated</string>
     <string name="subscription_inactive">Subscription Inactive</string>
     <string name="subscription_active">Subscription active</string>
     <string name="rupee">₹</string>
@@ -64,9 +66,23 @@
     <string name="save_continue">Save and Continue</string>
     <string name="phone_number">Phone number</string>
     <string name="logout">Logout</string>
+    <string name="submit">Submit</string>
+    <string name="msg_token_fmt">FCM TOKEN</string>
+    <string name="fcm_message">FCM message</string>
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
     <string-array name="gender">
         <item>select gender</item>
         <item>Male</item>
         <item>Female</item>
     </string-array>
+
+    <string-array name="options">
+        <item>select correct answer</item>
+        <item>a</item>
+        <item>b</item>
+        <item>c</item>
+        <item>d</item>
+    </string-array>
+
+
 </resources>

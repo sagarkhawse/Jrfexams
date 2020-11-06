@@ -1,167 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient_create_account"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context=".activities.LogRegActivity">
 
-<ImageView
-    android:layout_width="@dimen/_150sdp"
-    android:layout_height="@dimen/_130sdp"
-    android:layout_marginTop="10dp"
-    android:src="@drawable/logo"
-    android:layout_centerHorizontal="true"
-    android:id="@+id/logo"
-    android:contentDescription="@string/logo" />
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_centerInParent="true"
-        android:layout_below="@id/logo"
-        android:orientation="vertical">
+        android:layout_above="@id/bottom_txt">
 
-        <TextView
-            android:id="@+id/heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/avenir_next_demi"
-            android:text="@string/create_account"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/_25ssp"
-            android:layout_marginBottom="@dimen/_5sdp"/>
-
-
-        <EditText
-            android:id="@+id/username"
-            android:digits="abcdefghijklmnopqrstuvwxyz1234567890"
-            android:inputType="textFilter"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_marginStart="20sp"
-            android:layout_marginEnd="20sp"
-            android:autofillHints="@string/full_name"
-            android:background="@drawable/bg_edit_text"
-            android:drawablePadding="10sp"
-            android:hint="@string/full_name"
-            android:maxLength="25"
-            android:paddingStart="20sp"
-            android:textColor="@color/colorWhite"
-            android:textColorHint="@color/colorWhite"
-            android:visibility="visible"
-            tools:ignore="RtlSymmetry" />
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/phone"
-            android:inputType="phone"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_marginStart="20sp"
-            android:layout_marginEnd="20sp"
-            android:autofillHints="@string/username"
-            android:background="@drawable/bg_edit_text"
-            android:drawablePadding="10sp"
-            android:hint="@string/phone"
-            android:layout_marginTop="15sp"
-            android:maxLength="25"
-            android:paddingStart="20sp"
-            android:textColor="@color/colorWhite"
-            android:textColorHint="@color/colorWhite"
-            android:visibility="visible"
-            tools:ignore="RtlSymmetry" />
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_150sdp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@string/logo"
+                android:scaleType="centerCrop"
+                android:src="@drawable/login_logo" />
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_marginStart="20sp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="20sp"
-            android:autofillHints="@string/email"
-            android:background="@drawable/bg_edit_text"
-            android:drawablePadding="10sp"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:paddingStart="20sp"
-            android:textColor="@color/colorWhite"
-            android:textColorHint="@color/colorWhite"
-            android:visibility="visible"
-            tools:ignore="RtlSymmetry" />
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_marginStart="20sp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="20sp"
-            android:autofillHints="@string/password"
-            android:background="@drawable/bg_edit_text"
-            android:drawablePadding="10sp"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:paddingStart="20sp"
-            android:textColor="@color/colorWhite"
-            android:textColorHint="@color/colorWhite"
-            android:visibility="visible"
-            tools:ignore="RtlSymmetry" />
-
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20sp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="20sp"
-            app:cardCornerRadius="10sp"
-            tools:ignore="MissingClass">
-
-            <Button
-                android:id="@+id/btn_continue"
-                android:visibility="visible"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorPrimary"
-                android:fontFamily="@font/avenir_next_regular"
-                android:text="@string/sign_up"
-                android:textAllCaps="false"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content"
+                android:layout_below="@id/logo"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <ProgressBar
+                <TextView
+                    android:id="@+id/heading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:fontFamily="@font/avenir_next_demi"
+                    android:text="@string/create_account"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_25ssp" />
+
+
+                <EditText
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_marginStart="20sp"
+                    android:layout_marginEnd="20sp"
+                    android:autofillHints="@string/full_name"
+                    android:background="@drawable/bg_edit_text"
+                    android:drawablePadding="10sp"
+                    android:hint="@string/full_name"
+                    android:inputType="text"
+                    android:maxLength="25"
+                    android:paddingStart="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:textColorHint="@color/colorWhite"
+                    android:visibility="visible"
+                    tools:ignore="RtlSymmetry" />
+
+                <EditText
+                    android:id="@+id/phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_marginStart="20sp"
+                    android:layout_marginTop="15sp"
+                    android:layout_marginEnd="20sp"
+                    android:autofillHints="@string/username"
+                    android:background="@drawable/bg_edit_text"
+                    android:drawablePadding="10sp"
+                    android:hint="@string/phone"
+                    android:inputType="phone"
+                    android:maxLength="25"
+                    android:paddingStart="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:textColorHint="@color/colorWhite"
+                    android:visibility="visible"
+                    tools:ignore="RtlSymmetry" />
+
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_marginStart="20sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20sp"
+                    android:autofillHints="@string/email"
+                    android:background="@drawable/bg_edit_text"
+                    android:drawablePadding="10sp"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:textColorHint="@color/colorWhite"
+                    android:visibility="visible"
+                    tools:ignore="RtlSymmetry" />
+
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_marginStart="20sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20sp"
+                    android:autofillHints="@string/password"
+                    android:background="@drawable/bg_edit_text"
+                    android:drawablePadding="10sp"
+                    android:hint="@string/password"
+                    android:inputType="text"
+                    android:paddingStart="20sp"
+                    android:textColor="@color/colorWhite"
+                    android:textColorHint="@color/colorWhite"
+                    android:visibility="visible"
+                    tools:ignore="RtlSymmetry,TextFields" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20sp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="20sp"
+                    app:cardCornerRadius="10sp"
+                    tools:ignore="MissingClass">
+
+                    <Button
+                        android:id="@+id/btn_continue"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary"
+                        android:fontFamily="@font/avenir_next_regular"
+                        android:text="@string/sign_up"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:visibility="visible" />
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility="gone" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/txt_below_continue_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/terms_of_use_and_privacy_policy"
+
+                    />
+
+                <TextView
+                android:id="@+id/bottom_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:visibility="gone"
-                android:id="@+id/progress_bar"
-                />
-        </androidx.cardview.widget.CardView>
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="@dimen/_30sdp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/already_have_an_ac"
+                android:textColor="@color/colorBlack" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
 
-        <TextView
-            android:id="@+id/txt_below_continue_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10sp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/terms_of_use_and_privacy_policy"
 
-            />
-    </LinearLayout>
 
-    <TextView
-        android:id="@+id/bottom_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-android:layout_margin="10dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="@string/already_have_an_ac"
-        android:textColor="@color/colorBlack" />
 
-</RelativeLayout>
+</LinearLayout>
