@@ -33,8 +33,10 @@ public interface RetrofitApi {
                        @Field("password") String password,
                        @Field("device_id") String device_id);
 
-    @GET(Variables.api+"show_all_dates")
-    Call<Date> show_all_dates();
+
+    @FormUrlEncoded
+    @POST(Variables.api+"show_all_test")
+    Call<Date> show_all_test(@Field("type") int type);
 
     @FormUrlEncoded
     @POST(Variables.api+"get_app_data")

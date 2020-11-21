@@ -11,7 +11,10 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.virtualmind.jrfexams.R;
 import com.virtualmind.jrfexams.common.Common;
 import com.virtualmind.jrfexams.databinding.ActivityLogRegBinding;
@@ -47,6 +50,8 @@ public class LogRegActivity extends AppCompatActivity {
 
         initActions();
         createPhoneLoginForm();
+        FirebaseAnalytics.getInstance(this);
+        Glide.with(activity).asBitmap().load(R.drawable.login_logo).override(1080, 800).into(binding.logo);
     }
 
     private void initActions() {
@@ -167,38 +172,42 @@ private void hideProgressBar(){
     }
 
     private void checkUser(String phone) {
-        ProgressDialog pd = new ProgressDialog(activity);
-        pd.setMessage("please wait...");
-        pd.show();
-        mService.check_user(phone)
-                .enqueue(new Callback<User>() {
-                    @Override
-                    public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
-                        if (response.body() != null) {
-                            User data = response.body();
-                            if (data.code.equals(Constants.SUCCESS)) {
-                         sign_up_log_in_api();
-                            } else {
-                                Functions.ShowToast(activity, data.error_msg);
+        try {
+         showProgressBar();
+
+            mService.check_user(phone)
+                    .enqueue(new Callback<User>() {
+                        @Override
+                        public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
+                            if (response.body() != null) {
+                                User data = response.body();
+                                if (data.code.equals(Constants.SUCCESS)) {
+                                    sign_up_log_in_api();
+                                } else {
+                                    Functions.ShowToast(activity, data.error_msg);
+                                }
+                                hideProgressBar();
                             }
-                            pd.dismiss();
                         }
-                    }
 
-                    @Override
-                    public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
-                        Functions.ShowToast(activity, t.getMessage());
-                        pd.dismiss();
+                        @Override
+                        public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
+                            Functions.ShowToast(activity, t.getMessage());
+                            hideProgressBar();
 
-                    }
-                });
+
+                        }
+                    });
+        }catch(Exception e){
+            Toast.makeText(activity, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
     }
     private void sign_up_log_in_api() {
         if (type.equals("login")) {
             full_name = email = "null";
         }
-        binding.progressBar.setVisibility(View.VISIBLE);
-        binding.btnContinue.setVisibility(View.GONE);
+        showProgressBar();
 
         Log.d(TAG, "sign_up_log_in_api: " + full_name + " " +email + " "+ phone + " "+ password+ " ");
 
@@ -226,5 +235,10 @@ private void hideProgressBar(){
                         hideProgressBar();
                     }
                 });
+    }
+
+    private void showProgressBar() {
+        binding.progressBar.setVisibility(View.VISIBLE);
+        binding.btnContinue.setVisibility(View.GONE);
     }
 }

@@ -13,6 +13,7 @@ import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.virtualmind.jrfexams.R;
 import com.virtualmind.jrfexams.adapters.QuizAdapter;
@@ -32,6 +33,8 @@ import java.util.Locale;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 public class MCQActivity extends AppCompatActivity implements IQuizListener {
     private static final String TAG = "MCQActivityTest";
@@ -89,7 +92,7 @@ private  int date_id;
         });
 
         binding.ivBack.setOnClickListener(view13 -> onBackPressed());
-
+        Glide.with(activity).asBitmap().load(R.drawable.jrf_logo).override(MATCH_PARENT, 200).into(binding.logo);
 
         //for admin only
 //        binding.addQuestion.setOnClickListener(new View.OnClickListener() {

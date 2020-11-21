@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".activities.ContactUsActivity">
+
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_80sdp"
+        android:src="@drawable/logo_main"
+        android:scaleType="centerCrop"
+        android:layout_margin="@dimen/_20sdp"
+        />
+
+    <TextView
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BJB nagar,Bhubaneswar, Odisha-751014"
+        android:fontFamily="@font/poppins_semibold"
+        android:textSize="@dimen/_14ssp"
+        tools:layout_editor_absoluteX="193dp"
+        tools:layout_editor_absoluteY="256dp"
+        android:layout_margin="@dimen/_10sdp"
+        />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="jrfexams@gmail.com"
+        android:inputType="textEmailAddress"
+        android:textColorLink="@color/colorBlue"
+        android:textColor="@color/colorBlue"
+    android:textSize="@dimen/_13ssp"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/whatsapp"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_20sdp"
+        app:cardElevation="@dimen/_5ssp"
+        app:cardCornerRadius="@dimen/_20sdp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WhatsApp"
+            android:textColor="@color/colorWhite"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="@dimen/_16ssp"
+            android:textAlignment="center"
+            android:background="@color/colorGreen"
+            android:padding="@dimen/_8sdp"
+            />
+    </androidx.cardview.widget.CardView>
+
+
+
+</LinearLayout>

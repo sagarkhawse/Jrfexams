@@ -1,6 +1,7 @@
 package com.virtualmind.jrfexams.utils;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -260,7 +261,7 @@ public static int getFileSize(String file_path){
     }
 
 
-    public static void startSupportChat(Context context) {
+    public static void startSupportChat(Activity context) {
 
         try {
             String headerReceiver = "hello ";// Replace with your message.
@@ -275,6 +276,20 @@ public static int getFileSize(String file_path){
         }
 
     }
+    public static void startEmailIntent(Activity context) {
+
+        try {
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                    "mailto","jrfexams@gmail.com", null));
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "Body");
+            context.startActivity(Intent.createChooser(emailIntent, "Send email..."));
+        } catch (Exception e) {
+            e.printStackTrace ();
+        }
+
+    }
+
 
 
     public static String dateFormat(String date){

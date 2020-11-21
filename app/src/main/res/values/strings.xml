@@ -35,7 +35,7 @@
     <string name="phone">Phone</string>
     <string name="full_name">Full name</string>
     <string name="questions">Questions</string>
-    <string name="demo_exam">Demo Exam</string>
+    <string name="demo_exam">Free Exams</string>
 
 
     <string name="privacy_policy">Privacy Policy</string>
@@ -70,6 +70,9 @@
     <string name="msg_token_fmt">FCM TOKEN</string>
     <string name="fcm_message">FCM message</string>
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="term_and_condition">Term and Condition</string>
+    <string name="refund_policy">Refund policy</string>
+    <string name="about_us">About us</string>
     <string-array name="gender">
         <item>select gender</item>
         <item>Male</item>

@@ -16,22 +16,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.bumptech.glide.Glide;
 import com.gocashfree.cashfreesdk.CFPaymentService;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
-import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
+import com.onesignal.OneSignal;
 import com.virtualmind.jrfexams.BuildConfig;
 import com.virtualmind.jrfexams.Payment;
 import com.virtualmind.jrfexams.R;
 import com.virtualmind.jrfexams.adapters.DatesAdapter;
+import com.virtualmind.jrfexams.bottomsheet.FreeExamsBottomSheet;
 import com.virtualmind.jrfexams.common.Common;
-import com.virtualmind.jrfexams.databinding.ActivityLogRegBinding;
 import com.virtualmind.jrfexams.databinding.ActivityMainBinding;
 import com.virtualmind.jrfexams.models.AppData;
 import com.virtualmind.jrfexams.models.Date;
@@ -108,17 +107,32 @@ public class MainActivity extends AppCompatActivity {
             initAppData();
             initDates();
 
+//
+            Button crashButton = new Button(this);
+            crashButton.setText("Crash!");
+            crashButton.setOnClickListener(view14 -> {
+                throw new RuntimeException("Test Crash"); // Force a crash
+            });
+
+            addContentView(crashButton, new ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
+//
         }
 
         binding.menu.setOnClickListener(this::showMenuOptions);
         binding.cvSubscription.setOnClickListener(view1 -> initPaymentScreen());
         binding.cvDemoExam.setOnClickListener(view12 -> {
-            Intent intent = new Intent(activity, MCQActivity.class);
-            intent.putExtra("date_id", 0);
-            startActivity(intent);
+//            Intent intent = new Intent(activity, MCQActivity.class);
+//            intent.putExtra("date_id", 0);
+//            startActivity(intent);
+            FreeExamsBottomSheet bottomSheet = new FreeExamsBottomSheet();
+            bottomSheet.show(getSupportFragmentManager(), "freeexambottomsheet");
         });
 
         FirebaseApp.initializeApp(this);
+        Glide.with(activity).asBitmap().load(R.drawable.logo_main).override(600, 200).into(binding.logo);
+
 
         //admin
    // binding.admin.setOnClickListener(view14 -> startActivity(new Intent(activity,AdminActivity.class)));
@@ -180,7 +194,8 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
     private void initDates() {
-        mService.show_all_dates()
+        //1 for paid exams
+        mService.show_all_test(1)
                 .enqueue(new Callback<Date>() {
                     @Override
                     public void onResponse(@NonNull Call<Date> call, @NonNull Response<Date> response) {
@@ -216,11 +231,31 @@ public class MainActivity extends AppCompatActivity {
                         finish();
                         return true;
                     case R.id.contact_us:
-                        Functions.startSupportChat(activity);
+                       startActivity(new Intent(activity, ContactUsActivity.class));
                         return true;
 
                     case R.id.privacy_policy:
-                        startActivity(new Intent(activity, PrivacyPolicyActivity.class));
+                        Intent intent4 = new Intent(activity, PrivacyPolicyActivity.class);
+                        intent4.putExtra("work","privacy_policy");
+                        startActivity(intent4);
+                        return true;
+
+                    case R.id.about_us:
+                        Intent intent1 = new Intent(activity, PrivacyPolicyActivity.class);
+                        intent1.putExtra("work","about_us");
+                        startActivity(intent1);
+                        return true;
+
+                    case R.id.term_and_condition:
+                        Intent intent2 = new Intent(activity, PrivacyPolicyActivity.class);
+                        intent2.putExtra("work","term_and_condition");
+                        startActivity(intent2);
+                        return true;
+
+                    case R.id.refund_policy:
+                        Intent intent3 = new Intent(activity, PrivacyPolicyActivity.class);
+                        intent3.putExtra("work","refund_policy");
+                        startActivity(intent3);
                         return true;
 
                     case R.id.share:
