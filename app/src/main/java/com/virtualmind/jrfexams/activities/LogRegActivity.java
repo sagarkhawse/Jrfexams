@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 import com.virtualmind.jrfexams.R;
 import com.virtualmind.jrfexams.common.Common;
 import com.virtualmind.jrfexams.databinding.ActivityLogRegBinding;
@@ -44,7 +45,9 @@ public class LogRegActivity extends AppCompatActivity {
         binding = ActivityLogRegBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
+        FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+       // FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
+     //   int a = 2 / 0;
         activity = this;
         mService = Common.getAPI();
 
@@ -67,9 +70,9 @@ public class LogRegActivity extends AppCompatActivity {
         });
         binding.btnContinue.setOnClickListener(view -> {
             if (isFormFilled()) {
-                if (type.equals("login")){
+                if (type.equals("login")) {
                     checkUser(binding.phone.getText().toString().trim());
-                }else{
+                } else {
                     sign_up_log_in_api();
                 }
 
@@ -78,16 +81,15 @@ public class LogRegActivity extends AppCompatActivity {
 
         binding.txtBelowContinueBtn.setOnClickListener(view -> {
 
-                if (type.equals("login")){
-                   Functions.startSupportChat(activity);
-                }else{
-                    startActivity(new Intent(activity,PrivacyPolicyActivity.class));
-                }
+            if (type.equals("login")) {
+                Functions.startSupportChat(activity);
+            } else {
+                startActivity(new Intent(activity, PrivacyPolicyActivity.class));
+            }
 
 
         });
     }
-
 
 
     private void openMainActivity() {
@@ -97,10 +99,11 @@ public class LogRegActivity extends AppCompatActivity {
         finish();
     }
 
-private void hideProgressBar(){
-    binding.progressBar.setVisibility(View.GONE);
-    binding.btnContinue.setVisibility(View.VISIBLE);
-}
+    private void hideProgressBar() {
+        binding.progressBar.setVisibility(View.GONE);
+        binding.btnContinue.setVisibility(View.VISIBLE);
+    }
+
     private void createPhoneSignUpForm() {
         type = "sign_up";
         // setting text views for sign up with email
@@ -149,7 +152,7 @@ private void hideProgressBar(){
         } else if (type.equals("sign_up") && TextUtils.isEmpty(full_name)) {
             binding.username.setError("full name required");
             binding.username.requestFocus();
-        }else if (binding.phone.length()!=10) {
+        } else if (binding.phone.length() != 10) {
             binding.phone.setError("enter 10 digit phone number");
             binding.phone.requestFocus();
         } else if (type.equals("sign_up") && TextUtils.isEmpty(email)) {
@@ -173,7 +176,7 @@ private void hideProgressBar(){
 
     private void checkUser(String phone) {
         try {
-         showProgressBar();
+            showProgressBar();
 
             mService.check_user(phone)
                     .enqueue(new Callback<User>() {
@@ -198,20 +201,21 @@ private void hideProgressBar(){
 
                         }
                     });
-        }catch(Exception e){
-            Toast.makeText(activity, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(activity, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
     }
+
     private void sign_up_log_in_api() {
         if (type.equals("login")) {
             full_name = email = "null";
         }
         showProgressBar();
 
-        Log.d(TAG, "sign_up_log_in_api: " + full_name + " " +email + " "+ phone + " "+ password+ " ");
+        Log.d(TAG, "sign_up_log_in_api: " + full_name + " " + email + " " + phone + " " + password + " ");
 
-        mService.sign_up(full_name, email, phone, password,Functions.getDeviceId(activity))
+        mService.sign_up(full_name, email, phone, password, Functions.getDeviceId(activity))
                 .enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
@@ -220,7 +224,7 @@ private void hideProgressBar(){
                                 //login or sign up success
 
                                 SharedPreferenceUtil sharedPreferenceUtil = new SharedPreferenceUtil(activity);
-                                Helper.setLoggedInUser(sharedPreferenceUtil,response.body().res.get(0));
+                                Helper.setLoggedInUser(sharedPreferenceUtil, response.body().res.get(0));
                                 openMainActivity();
                             } else {
                                 hideProgressBar();
